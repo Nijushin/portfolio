@@ -178,9 +178,9 @@ const CloseButton = ({ onClick }) => (
 
 const AboutLayout = ({ data }) => (
   <div className="w-full h-full flex items-center justify-center pt-20 pb-20 overflow-visible pointer-events-none px-10">
-    <div className="w-full max-w-[1300px] grid grid-cols-12 gap-10 relative pointer-events-auto">
+    <div className="w-full max-w-[1000px] grid grid-cols-12 gap-10 relative pointer-events-auto">
       <div className="col-span-8 text-left">
-        <h2 className="text-[4.5vw] font-medium leading-[1.05] tracking-tight mb-16 text-white overflow-hidden" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+        <h2 className="text-[3vw] font-medium leading-[1.05] tracking-tight mb-16 text-white overflow-hidden" style={{ fontFamily: "'Orbitron', sans-serif" }}>
           {data.title.split(' ').map((word, i) => <span key={i} className="inline-block mr-4 reveal-text">{word}</span>)}
         </h2>
         <div className="space-y-8 max-w-[500px]">
@@ -200,7 +200,7 @@ const ProjectLayout = ({ data, horizontalRef, titleRef }) => (
   <div className="w-full h-screen flex items-center justify-start overflow-hidden relative">
     <div className="fixed top-[15%] left-[5%] right-[5%] h-[1px] bg-white/20 z-30" />
     <div ref={titleRef} className="fixed left-0 top-0 bottom-0 w-[45vw] z-20 pointer-events-none flex items-center pl-20 bg-gradient-to-r from-black via-black 70% to-transparent">
-      <h2 className="section-title-gradient text-[8.5vw] font-bold tracking-tighter leading-[0.8] uppercase opacity-100 flex flex-col">
+      <h2 className="section-title-gradient text-[6vw] font-bold tracking-tighter leading-[0.8] uppercase opacity-100 flex flex-col">
         <span>PROJECTS</span>
       </h2>
     </div>
@@ -208,8 +208,8 @@ const ProjectLayout = ({ data, horizontalRef, titleRef }) => (
       {data.map((proj, i) => (
         <div key={i} className="timeline-item group flex flex-col gap-10 shrink-0 mt-10">
           <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-[0.6rem] tracking-[0.6em] text-white/20 uppercase">{proj.type}</span><span className="text-[0.6rem] tracking-[0.6em] text-white/20 uppercase">{proj.year}</span></div>
-          <div className="relative overflow-hidden w-[650px] h-[380px] bg-white/5 border border-white/10"><img src={proj.img} className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-[1000ms] group-hover:scale-105" alt={proj.title} /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" /></div>
-          <div className="space-y-6"><h3 className="text-[2.8rem] font-medium tracking-[0.1em] text-white uppercase leading-none" style={{ fontFamily: "'Orbitron', sans-serif" }}>{proj.title}</h3><p className="text-[0.7rem] tracking-[0.3em] text-white/30 uppercase max-w-[450px] leading-relaxed reveal-detail">{proj.desc}</p></div>
+          <div className="relative overflow-hidden w-[500px] h-[300px] bg-white/5 border border-white/10"><img src={proj.img} className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-[1000ms] group-hover:scale-105" alt={proj.title} /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" /></div>
+          <div className="space-y-6"><h3 className="text-[2.2rem] font-medium tracking-[0.1em] text-white uppercase leading-none" style={{ fontFamily: "'Orbitron', sans-serif" }}>{proj.title}</h3><p className="text-[0.7rem] tracking-[0.3em] text-white/30 uppercase max-w-[450px] leading-relaxed reveal-detail">{proj.desc}</p></div>
         </div>
       ))}
     </div>
@@ -220,7 +220,7 @@ const DefaultLayout = ({ sectionName, data, horizontalRef, titleRef }) => (
   <div className="w-full h-screen flex items-center overflow-hidden relative">
     <div className="fixed top-[15%] left-[5%] right-[5%] h-[1px] bg-white/20 z-30" />
     <div ref={titleRef} className="fixed left-0 top-0 bottom-0 w-[45vw] z-20 pointer-events-none flex items-center pl-20 bg-gradient-to-r from-black via-black 70% to-transparent">
-      <h2 className="section-title-gradient text-[8.5vw] font-bold tracking-tighter leading-[0.8] uppercase opacity-100 flex flex-col">
+      <h2 className="section-title-gradient text-[6vw] font-bold tracking-tighter leading-[0.8] uppercase opacity-100 flex flex-col">
         {sectionName.split(' ').map((word, i) => <span key={i}>{word}</span>)}
       </h2>
     </div>
@@ -314,8 +314,8 @@ const SectionOverlay = ({ sectionName, onClose }) => {
 
 const SmoothZoom = () => {
     const { camera, gl } = useThree();
-    const targetDistance = useRef(36);
-    const currentDistance = useRef(36);
+    const targetDistance = useRef(42);
+    const currentDistance = useRef(42);
     const minZ = 12;
     const maxZ = 60;
   
@@ -369,7 +369,7 @@ const NodeDiagram = ({ addLog, onNodeClick }) => {
   
   const nodes = useMemo(() => {
     const pts = [];
-    const radius = 18;
+    const radius = 15;
     const num = 26;
     const phi = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < num; i++) {
@@ -453,7 +453,7 @@ function MainApp() {
       <ActionLog logs={logs} />
       {!active && <CursorCoords />}
       <CursorTrail />
-      <div className="scene-wrap"><Canvas camera={{ position: [0, 0, 36], fov: 45 }} dpr={[1, 2]}><color attach="background" args={['#000']} /><fog attach="fog" args={['#000', 30, 80]} /><OrbitControls enableZoom={false} enablePan={false} dampingFactor={0.05} rotateSpeed={0.5} /><Suspense fallback={null}><SmoothZoom /><NodeDiagram addLog={addLog} onNodeClick={(l) => { setActive(l); addLog(`OPENING: ${l}`); }} /></Suspense></Canvas></div>
+      <div className="scene-wrap"><Canvas camera={{ position: [0, 0, 42], fov: 45 }} dpr={[1, 2]}><color attach="background" args={['#000']} /><fog attach="fog" args={['#000', 30, 80]} /><OrbitControls enableZoom={false} enablePan={false} dampingFactor={0.05} rotateSpeed={0.5} /><Suspense fallback={null}><SmoothZoom /><NodeDiagram addLog={addLog} onNodeClick={(l) => { setActive(l); addLog(`OPENING: ${l}`); }} /></Suspense></Canvas></div>
       {active && <SectionOverlay sectionName={active} onClose={() => setActive(null)} />}
     </div>
   );
