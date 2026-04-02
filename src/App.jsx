@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Observer } from 'gsap/Observer';
 import { MoveLeft } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 gsap.registerPlugin(ScrollTrigger, Observer);
 
@@ -459,4 +460,4 @@ function MainApp() {
   );
 }
 
-export default function App() { return <ErrorBoundary><MainApp /></ErrorBoundary>; }
+export default function App() { return <ErrorBoundary><MainApp /><SpeedInsights /></ErrorBoundary>; }
