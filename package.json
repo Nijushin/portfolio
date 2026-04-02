@@ -5,11 +5,11 @@
   "homepage": "https://[your-username].github.io/portfolio-website",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node node_modules/vite/bin/vite.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "build": "npx vite build",
-    "preview": "vite preview"
+    "build": "node node_modules/vite/bin/vite.js build",
+    "preview": "node node_modules/vite/bin/vite.js preview"
   },
   "dependencies": {
     "@react-three/drei": "^9.96.1",
