@@ -270,20 +270,22 @@ const DefaultLayout = ({ sectionName, data, horizontalRef, titleRef }) => {
           {sectionName.split(' ').map((word, i) => <span key={i}>{word} </span>)}
         </h2>
       </div>
-      {/* Mobile: vertical list layout — starts below the 100px title bar */}
-      <div className="md:hidden w-full h-full overflow-y-auto pt-[108px] pb-10 px-6 flex flex-col gap-10">
+      {/* Mobile: vertical list layout — starts well below the title bar */}
+      <div className="md:hidden w-full h-full overflow-y-auto pt-[140px] pb-16 px-6 flex flex-col gap-0">
         {Array.isArray(data) && data.map((item, i) => (
-          <div key={i} className="flex flex-col gap-3 border-b border-white/5 pb-8">
+          <div key={i} className="flex flex-col gap-3 border-b border-white/[0.06] py-7">
             {item.label && (
               <div className="flex items-center gap-4">
-                <div className="w-2 h-2 rounded-full bg-white/50 shrink-0" />
-                <h3 className="text-[1.1rem] font-medium tracking-[0.15em] text-white/80 uppercase" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                <div className="w-2 h-2 rounded-full bg-white/40 shrink-0" />
+                <h3 className="text-[1.15rem] font-medium tracking-[0.15em] text-white/85 uppercase" style={{ fontFamily: "'Orbitron', sans-serif" }}>
                   {item.label}
                 </h3>
               </div>
             )}
-            {item.desc && <p className="pl-6 text-[0.65rem] tracking-[0.25em] text-white/30 uppercase leading-relaxed">{item.desc}</p>}
-            {item.href && <a href={item.href} className="pl-6 text-[0.65rem] tracking-[0.25em] text-white/50 uppercase leading-relaxed underline underline-offset-4">{item.desc}</a>}
+            {item.href
+              ? <a href={item.href} className="pl-6 text-[0.68rem] tracking-[0.28em] text-white/50 uppercase leading-relaxed underline underline-offset-4 decoration-white/20">{item.desc}</a>
+              : item.desc && <p className="pl-6 text-[0.68rem] tracking-[0.28em] text-white/30 uppercase leading-relaxed">{item.desc}</p>
+            }
           </div>
         ))}
       </div>
@@ -346,15 +348,19 @@ const SectionOverlay = ({ sectionName, onClose }) => {
             });
         };
 
+        // Fixed pixel step per scroll event — keeps speed consistent across all pages
+        const STEP_PX = 320;
+        const maxScrollPx = totalWidth - window.innerWidth + 200;
+
         Observer.create({
           target: window,
           type: "wheel,touch,pointer",
           onUp: (self) => {
-             scrollProgress.current = Math.max(0, scrollProgress.current - 0.06);
+             scrollProgress.current = Math.max(0, scrollProgress.current - STEP_PX / maxScrollPx);
              updateScroll(self.deltaY);
           },
           onDown: (self) => {
-             scrollProgress.current = Math.min(1, scrollProgress.current + 0.06);
+             scrollProgress.current = Math.min(1, scrollProgress.current + STEP_PX / maxScrollPx);
              updateScroll(self.deltaY);
           },
           wheelSpeed: 1,
