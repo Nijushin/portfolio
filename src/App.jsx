@@ -10,7 +10,7 @@ import { MoveLeft } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger, Observer);
 
 // --- Constants & Data ---
-const KEYWORDS = ['ABOUT', 'CONTACT', 'WEBSITE DESIGN', 'PROJECTS', 'SERVICES', 'SKILLS'];
+const KEYWORDS = ['ABOUT', 'CONTACT', 'TOOLS', 'PROJECTS', 'SERVICES', 'SKILLS'];
 
 const SECTION_CONTENT = {
   'ABOUT': {
@@ -34,10 +34,22 @@ const SECTION_CONTENT = {
     { label: 'LINKEDIN', desc: 'IN/EXORT-PORTFOLIO', href: '#' },
     { label: 'EMAIL', desc: 'EXORTRISOLAR@GMAIL.COM', href: 'mailto:exortrisolar@gmail.com' }
   ],
-  'WEBSITE DESIGN': [
-    { label: 'SYSTEM ARCHITECTURE', desc: 'SCALABLE 3D RENDERING.' },
-    { label: 'MOTION LOGIC', desc: 'COMPLEX GSAP TRANSFORMATIONS.' },
-    { label: 'UI SYSTEMS', desc: 'MODERN REACT ARCHITECTURE.' }
+  'TOOLS': [
+    { label: 'ADOBE PHOTOSHOP',    desc: 'PHOTO EDITING & COMPOSITING.' },
+    { label: 'ADOBE ILLUSTRATOR',  desc: 'VECTOR GRAPHICS & BRAND ASSETS.' },
+    { label: 'ADOBE INDESIGN',     desc: 'PRINT & DIGITAL LAYOUT DESIGN.' },
+    { label: 'ADOBE AFTER EFFECTS',desc: 'MOTION GRAPHICS & VFX.' },
+    { label: 'FIGMA',              desc: 'UI/UX DESIGN & PROTOTYPING.' },
+    { label: 'BLENDER',            desc: '3D MODELLING & RENDERING.' },
+    { label: 'REACT + THREE.JS',   desc: 'INTERACTIVE WEB EXPERIENCES.' },
+    { label: 'GSAP + WEBGL',       desc: 'HIGH-PERFORMANCE ANIMATIONS.' },
+    { label: 'VITE + NODE.JS',     desc: 'MODERN BUILD & BACKEND TOOLS.' },
+    { label: 'N8N',                desc: 'VISUAL WORKFLOW AUTOMATION.' },
+    { label: 'MIDJOURNEY',         desc: 'AI-GENERATED VISUAL ART.' },
+    { label: 'STABLE DIFFUSION',   desc: 'LOCAL GENERATIVE IMAGE MODELS.' },
+    { label: 'COMFYUI',            desc: 'NODE-BASED AI IMAGE PIPELINE.' },
+    { label: 'CHATGPT / CLAUDE',   desc: 'LLM-DRIVEN CONTENT & CODE.' },
+    { label: 'RUNWAY ML',          desc: 'AI VIDEO & CREATIVE GENERATION.' }
   ],
   'PROJECTS': [
     { 
@@ -177,63 +189,117 @@ const CloseButton = ({ onClick }) => (
 );
 
 const AboutLayout = ({ data }) => (
-  <div className="w-full h-full flex items-center justify-center pt-20 pb-20 overflow-visible pointer-events-none px-10">
-    <div className="w-full max-w-[1000px] grid grid-cols-12 gap-10 relative pointer-events-auto">
-      <div className="col-span-8 text-left">
-        <h2 className="text-[3vw] font-medium leading-[1.05] tracking-tight mb-16 text-white overflow-hidden" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+  <div className="w-full h-full flex items-center justify-center pt-24 pb-20 overflow-visible pointer-events-none px-6 md:px-10">
+    <div className="w-full max-w-[1200px] flex flex-col md:grid md:grid-cols-12 gap-10 md:gap-16 relative pointer-events-auto">
+      <div className="md:col-span-8 text-left">
+        <h2 className="text-[7vw] md:text-[3vw] font-medium leading-[1.05] tracking-tight mb-8 md:mb-16 text-white overflow-hidden" style={{ fontFamily: "'Orbitron', sans-serif" }}>
           {data.title.split(' ').map((word, i) => <span key={i} className="inline-block mr-4 reveal-text">{word}</span>)}
         </h2>
-        <div className="space-y-8 max-w-[500px]">
-          {data.paragraphs.map((p, i) => <p key={i} className="text-[1.1rem] leading-relaxed text-white/50 reveal-p" style={{ fontFamily: "'Inter', sans-serif" }}>{p}</p>)}
+        <div className="space-y-6 md:space-y-8 max-w-full md:max-w-[550px]">
+          {data.paragraphs.map((p, i) => <p key={i} className="text-[1rem] md:text-[1.1rem] leading-relaxed text-white/50 reveal-p" style={{ fontFamily: "'Inter', sans-serif" }}>{p}</p>)}
         </div>
       </div>
-      <div className="col-span-4 flex flex-col justify-end pb-12 space-y-12 text-right self-end">
-        <div className="space-y-4"><h4 className="text-[0.6rem] tracking-[0.5em] text-white/10 uppercase">SELECTED AWARDS</h4>{data.awards.map((a, i) => <p key={i} className="text-[0.75rem] text-white/60 tracking-wider translate-y-0">{a.label}</p>)}</div>
-        <div className="space-y-4"><h4 className="text-[0.6rem] tracking-[0.5em] text-white/10 uppercase">EDUCATION</h4>{data.education.map((e, i) => <p key={i} className="text-[0.75rem] text-white/60 tracking-wider translate-y-0">{e.label}</p>)}</div>
-        <div className="space-y-4"><h4 className="text-[0.6rem] tracking-[0.5em] text-white/10 uppercase">INQUIRIES</h4><p className="text-[0.75rem] text-white/60 underline underline-offset-8 decoration-white/10">{data.inquiries}</p></div>
+      <div className="md:col-span-4 flex flex-col justify-end space-y-8 md:space-y-12 text-left md:text-right self-start md:self-end mt-12 md:mt-0 border-t md:border-t-0 border-white/5 pt-8 md:pt-0">
+        <div className="space-y-2 md:space-y-4"><h4 className="text-[0.5rem] md:text-[0.6rem] tracking-[0.5em] text-white/10 uppercase">SELECTED AWARDS</h4>{data.awards.map((a, i) => <p key={i} className="text-[0.7rem] md:text-[0.75rem] text-white/60 tracking-wider">{a.label}</p>)}</div>
+        <div className="space-y-2 md:space-y-4"><h4 className="text-[0.5rem] md:text-[0.6rem] tracking-[0.5em] text-white/10 uppercase">EDUCATION</h4>{data.education.map((e, i) => <p key={i} className="text-[0.7rem] md:text-[0.75rem] text-white/60 tracking-wider">{e.label}</p>)}</div>
+        <div className="space-y-2 md:space-y-4"><h4 className="text-[0.5rem] md:text-[0.6rem] tracking-[0.5em] text-white/10 uppercase">INQUIRIES</h4><p className="text-[0.7rem] md:text-[0.75rem] text-white/60 underline underline-offset-8 decoration-white/10">{data.inquiries}</p></div>
       </div>
     </div>
   </div>
 );
 
-const ProjectLayout = ({ data, horizontalRef, titleRef }) => (
-  <div className="w-full h-screen flex items-center justify-start overflow-hidden relative">
-    <div className="fixed top-[15%] left-[5%] right-[5%] h-[1px] bg-white/20 z-30" />
-    <div ref={titleRef} className="fixed left-0 top-0 bottom-0 w-[45vw] z-20 pointer-events-none flex items-center pl-20 bg-gradient-to-r from-black via-black 70% to-transparent">
-      <h2 className="section-title-gradient text-[6vw] font-bold tracking-tighter leading-[0.8] uppercase opacity-100 flex flex-col">
-        <span>PROJECTS</span>
-      </h2>
+const ProjectLayout = ({ data, horizontalRef, titleRef }) => {
+  const isMobile = window.innerWidth < 768;
+  return (
+    <div className="w-full h-full flex items-center justify-start overflow-hidden relative">
+      <div className="fixed top-[15%] left-[5%] right-[5%] h-[1px] bg-white/20 z-30 hidden md:block" />
+      {/* Mobile: NAV-SAFE title bar — positioned below the BASIT nav */}
+      <div ref={titleRef} className="fixed left-0 top-0 w-full md:w-[45vw] z-20 pointer-events-none
+        flex items-end md:items-center pl-6 md:pl-20
+        h-[100px] pt-[52px] md:h-full md:pt-0
+        bg-gradient-to-b md:bg-gradient-to-r from-black/95 via-black/80 md:via-black to-transparent">
+        <h2 className="section-title-gradient text-[7vw] md:text-[5.2vw] font-bold tracking-tight leading-[0.9] uppercase opacity-100 whitespace-nowrap px-1">
+          PROJECTS
+        </h2>
+      </div>
+      {/* Mobile: vertical scroll layout — starts below the 100px title bar */}
+      <div className="md:hidden w-full h-full overflow-y-auto pt-[108px] pb-10 px-6 flex flex-col gap-12">
+        {data.map((proj, i) => (
+          <div key={i} className="flex flex-col gap-4">
+            <div className="flex justify-between items-end border-b border-white/5 pb-3">
+              <span className="text-[0.6rem] tracking-[0.5em] text-white/20 uppercase">{proj.type}</span>
+              <span className="text-[0.6rem] tracking-[0.5em] text-white/20 uppercase">{proj.year}</span>
+            </div>
+            <div className="relative overflow-hidden w-full h-[200px] bg-white/5 border border-white/10">
+              <img src={proj.img} className="w-full h-full object-cover opacity-60 grayscale" alt={proj.title} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+            </div>
+            <div className="space-y-3">
+              <h3 className="text-[1.4rem] font-medium tracking-[0.1em] text-white uppercase leading-none" style={{ fontFamily: "'Orbitron', sans-serif" }}>{proj.title}</h3>
+              <p className="text-[0.65rem] tracking-[0.25em] text-white/30 uppercase leading-relaxed">{proj.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Desktop: horizontal scroll layout */}
+      <div ref={!isMobile ? horizontalRef : null} className="hidden md:flex items-center gap-[45vw] pl-[65vw] pr-[40vw] h-full will-change-transform z-10">
+        {data.map((proj, i) => (
+          <div key={i} className="timeline-item group flex flex-col gap-10 shrink-0 mt-10">
+            <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-[0.6rem] tracking-[0.6em] text-white/20 uppercase">{proj.type}</span><span className="text-[0.6rem] tracking-[0.6em] text-white/20 uppercase">{proj.year}</span></div>
+            <div className="relative overflow-hidden w-[500px] h-[300px] bg-white/5 border border-white/10"><img src={proj.img} className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-[1000ms] group-hover:scale-105" alt={proj.title} /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" /></div>
+            <div className="space-y-6"><h3 className="text-[2.2rem] font-medium tracking-[0.1em] text-white uppercase leading-none" style={{ fontFamily: "'Orbitron', sans-serif" }}>{proj.title}</h3><p className="text-[0.7rem] tracking-[0.3em] text-white/30 uppercase max-w-[450px] leading-relaxed reveal-detail">{proj.desc}</p></div>
+          </div>
+        ))}
+      </div>
     </div>
-    <div ref={horizontalRef} className="flex items-center gap-[45vw] pl-[65vw] pr-[40vw] h-full will-change-transform z-10">
-      {data.map((proj, i) => (
-        <div key={i} className="timeline-item group flex flex-col gap-10 shrink-0 mt-10">
-          <div className="flex justify-between items-end border-b border-white/5 pb-4"><span className="text-[0.6rem] tracking-[0.6em] text-white/20 uppercase">{proj.type}</span><span className="text-[0.6rem] tracking-[0.6em] text-white/20 uppercase">{proj.year}</span></div>
-          <div className="relative overflow-hidden w-[500px] h-[300px] bg-white/5 border border-white/10"><img src={proj.img} className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-[1000ms] group-hover:scale-105" alt={proj.title} /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" /></div>
-          <div className="space-y-6"><h3 className="text-[2.2rem] font-medium tracking-[0.1em] text-white uppercase leading-none" style={{ fontFamily: "'Orbitron', sans-serif" }}>{proj.title}</h3><p className="text-[0.7rem] tracking-[0.3em] text-white/30 uppercase max-w-[450px] leading-relaxed reveal-detail">{proj.desc}</p></div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
-const DefaultLayout = ({ sectionName, data, horizontalRef, titleRef }) => (
-  <div className="w-full h-screen flex items-center overflow-hidden relative">
-    <div className="fixed top-[15%] left-[5%] right-[5%] h-[1px] bg-white/20 z-30" />
-    <div ref={titleRef} className="fixed left-0 top-0 bottom-0 w-[45vw] z-20 pointer-events-none flex items-center pl-20 bg-gradient-to-r from-black via-black 70% to-transparent">
-      <h2 className="section-title-gradient text-[6vw] font-bold tracking-tighter leading-[0.8] uppercase opacity-100 flex flex-col">
-        {sectionName.split(' ').map((word, i) => <span key={i}>{word}</span>)}
-      </h2>
+
+const DefaultLayout = ({ sectionName, data, horizontalRef, titleRef }) => {
+  const isMobile = window.innerWidth < 768;
+  return (
+    <div className="w-full h-full flex items-center overflow-hidden relative">
+      <div className="fixed top-[15%] left-[5%] right-[5%] h-[1px] bg-white/20 z-30 hidden md:block" />
+      {/* Mobile: NAV-SAFE title bar — positioned below the BASIT nav */}
+      <div ref={titleRef} className="fixed left-0 top-0 w-full md:w-[45vw] z-20 pointer-events-none
+        flex items-end md:items-center pl-6 md:pl-20
+        h-[100px] pt-[52px] md:h-full md:pt-0
+        bg-gradient-to-b md:bg-gradient-to-r from-black/95 via-black/80 md:via-black to-transparent">
+        <h2 className="section-title-gradient text-[7vw] md:text-[5.2vw] font-bold tracking-tight leading-[0.9] uppercase opacity-100 whitespace-nowrap px-1">
+          {sectionName.split(' ').map((word, i) => <span key={i}>{word} </span>)}
+        </h2>
+      </div>
+      {/* Mobile: vertical list layout — starts below the 100px title bar */}
+      <div className="md:hidden w-full h-full overflow-y-auto pt-[108px] pb-10 px-6 flex flex-col gap-10">
+        {Array.isArray(data) && data.map((item, i) => (
+          <div key={i} className="flex flex-col gap-3 border-b border-white/5 pb-8">
+            {item.label && (
+              <div className="flex items-center gap-4">
+                <div className="w-2 h-2 rounded-full bg-white/50 shrink-0" />
+                <h3 className="text-[1.1rem] font-medium tracking-[0.15em] text-white/80 uppercase" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                  {item.label}
+                </h3>
+              </div>
+            )}
+            {item.desc && <p className="pl-6 text-[0.65rem] tracking-[0.25em] text-white/30 uppercase leading-relaxed">{item.desc}</p>}
+            {item.href && <a href={item.href} className="pl-6 text-[0.65rem] tracking-[0.25em] text-white/50 uppercase leading-relaxed underline underline-offset-4">{item.desc}</a>}
+          </div>
+        ))}
+      </div>
+      {/* Desktop: horizontal scroll layout */}
+      <div ref={!isMobile ? horizontalRef : null} className="hidden md:flex items-center gap-[30vw] pl-[65vw] pr-[30vw] h-full will-change-transform z-10">
+        {Array.isArray(data) && data.map((item, i) => (
+          <div key={i} className="timeline-item flex flex-col gap-8 group shrink-0">
+            <div className="flex items-center gap-8"><div className="w-3 h-3 rounded-full bg-white group-hover:scale-150 transition-all duration-700 shadow-[0_0_15px_rgba(255,255,255,0.4)]" /><h3 className="text-[2.6rem] font-medium tracking-[0.2em] text-white/80 group-hover:text-white transition-all uppercase whitespace-nowrap" style={{ fontFamily: "'Orbitron', sans-serif" }}>{item.label}</h3></div>
+            <p className="pl-11 text-[0.7rem] tracking-[0.3em] text-white/30 uppercase max-w-[300px] leading-relaxed reveal-detail">{item.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
-    <div ref={horizontalRef} className="flex items-center gap-[30vw] pl-[65vw] pr-[30vw] h-full will-change-transform z-10">
-      {data.map((item, i) => (
-        <div key={i} className="timeline-item flex flex-col gap-8 group shrink-0">
-          <div className="flex items-center gap-8"><div className="w-3 h-3 rounded-full bg-white group-hover:scale-150 transition-all duration-700 shadow-[0_0_15px_rgba(255,255,255,0.4)]" /><h3 className="text-[2.6rem] font-medium tracking-[0.2em] text-white/80 group-hover:text-white transition-all uppercase whitespace-nowrap" style={{ fontFamily: "'Orbitron', sans-serif" }}>{item.label}</h3></div>
-          <p className="pl-11 text-[0.7rem] tracking-[0.3em] text-white/30 uppercase max-w-[300px] leading-relaxed reveal-detail">{item.desc}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
+
 
 const SectionOverlay = ({ sectionName, onClose }) => {
   const containerRef = useRef(null);
@@ -247,22 +313,36 @@ const SectionOverlay = ({ sectionName, onClose }) => {
       // Blur entrance
       gsap.fromTo(containerRef.current, { filter: "blur(40px)", opacity: 0 }, { filter: "blur(0px)", opacity: 1, duration: 1.5, ease: "expo.out" });
       
-      if (horizontalRef.current) {
+      if (horizontalRef.current && window.innerWidth >= 768) {
         const totalWidth = horizontalRef.current.scrollWidth;
         const maxScroll = totalWidth - window.innerWidth + 400;
 
         const updateScroll = (velocity = 0) => {
             const x = - (scrollProgress.current * (totalWidth - window.innerWidth + 200));
-            gsap.to(horizontalRef.current, { x, duration: 1.2, ease: "power3.out", overwrite: "auto" });
+            gsap.to(horizontalRef.current, { x, duration: 1.5, ease: "power3.out", overwrite: "auto" });
             
-            // Kinetic feedback based on velocity
-            const blurAmount = Math.min(Math.abs(velocity) * 0.15, 6);
-            const skewAmount = Math.max(Math.min(velocity * 0.02, 10), -10);
+            // Kinetic feedback based on velocity (toned down and self-correcting)
+            const blurAmount = Math.min(Math.abs(velocity) * 0.05, 3);
+            const skewAmount = Math.max(Math.min(velocity * 0.005, 5), -5);
 
-            gsap.utils.toArray(".timeline-item").forEach((item) => {
-               const details = item.querySelectorAll(".reveal-detail");
-               gsap.to(details, { filter: `blur(${blurAmount}px)`, duration: 0.5 });
-               gsap.to(item, { skewX: skewAmount, duration: 0.7, ease: "power2.out" });
+            // Animate to target state, then immediately start return to zero
+            gsap.to(".reveal-detail", { 
+              filter: `blur(${blurAmount}px)`, 
+              duration: 0.1, 
+              overwrite: "auto",
+              onComplete: () => {
+                gsap.to(".reveal-detail", { filter: "blur(0px)", duration: 0.6, ease: "power2.out" });
+              }
+            });
+
+            gsap.to(".timeline-item", { 
+              skewX: skewAmount, 
+              duration: 0.2, 
+              ease: "power2.out", 
+              overwrite: "auto",
+              onComplete: () => {
+                gsap.to(".timeline-item", { skewX: 0, duration: 0.8, ease: "power2.out" });
+              }
             });
         };
 
@@ -295,7 +375,7 @@ const SectionOverlay = ({ sectionName, onClose }) => {
   return (
     <div ref={containerRef} className="fixed inset-0 z-[1000] flex flex-col items-center justify-center overflow-hidden bg-black/40 backdrop-blur-[60px]">
       <CloseButton onClick={onClose} />
-      <div className="w-full h-full flex flex-col items-center justify-center overflow-hidden">
+      <div className="w-full h-full flex flex-col items-center justify-center overflow-visible md:overflow-hidden">
         {sectionName === 'ABOUT' ? <AboutLayout data={content} /> : 
          sectionName === 'PROJECTS' ? <ProjectLayout data={content} horizontalRef={horizontalRef} titleRef={titleRef} /> : 
          <DefaultLayout sectionName={sectionName} data={content} horizontalRef={horizontalRef} titleRef={titleRef} />}
@@ -362,21 +442,37 @@ const BreathingLines = ({ lines, hoveredNode, highlightableLineMap }) => {
   );
 };
 
+// Adjusts camera distance for different screen sizes
+const ResponsiveCamera = () => {
+  const { camera, size } = useThree();
+  useEffect(() => {
+    const isMobile = size.width < 768;
+    const isTablet = size.width < 1024;
+    const targetZ = isMobile ? 28 : isTablet ? 35 : 42;
+    camera.position.setZ(targetZ);
+    camera.fov = isMobile ? 55 : isTablet ? 50 : 45;
+    camera.updateProjectionMatrix();
+  }, [camera, size]);
+  return null;
+};
+
+
 const NodeDiagram = ({ addLog, onNodeClick }) => {
   const groupRef = useRef();
   const textsRef = useRef([]);
   const hoveredNode = useRef(null);
+  const RADIUS = 15;
+
   
   const nodes = useMemo(() => {
     const pts = [];
-    const radius = 15;
     const num = 26;
     const phi = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < num; i++) {
       const y = 1 - (i / (num - 1)) * 2;
       const r = Math.sqrt(1 - y * y);
       const theta = phi * i;
-      pts.push({ label: KEYWORDS[i % KEYWORDS.length], pos: new THREE.Vector3(Math.cos(theta) * r * radius, y * radius, Math.sin(theta) * r * radius) });
+      pts.push({ label: KEYWORDS[i % KEYWORDS.length], pos: new THREE.Vector3(Math.cos(theta) * r * RADIUS, y * RADIUS, Math.sin(theta) * r * RADIUS) });
     }
     return pts;
   }, []);
@@ -453,7 +549,7 @@ function MainApp() {
       <ActionLog logs={logs} />
       {!active && <CursorCoords />}
       <CursorTrail />
-      <div className="scene-wrap"><Canvas camera={{ position: [0, 0, 42], fov: 45 }} dpr={[1, 2]}><color attach="background" args={['#000']} /><fog attach="fog" args={['#000', 30, 80]} /><OrbitControls enableZoom={false} enablePan={false} dampingFactor={0.05} rotateSpeed={0.5} /><Suspense fallback={null}><SmoothZoom /><NodeDiagram addLog={addLog} onNodeClick={(l) => { setActive(l); addLog(`OPENING: ${l}`); }} /></Suspense></Canvas></div>
+      <div className="scene-wrap"><Canvas camera={{ position: [0, 0, 42], fov: 45 }} dpr={[1, 2]}><color attach="background" args={['#000']} /><fog attach="fog" args={['#000', 30, 80]} /><OrbitControls enableZoom={false} enablePan={false} dampingFactor={0.05} rotateSpeed={0.5} /><Suspense fallback={null}><ResponsiveCamera /><SmoothZoom /><NodeDiagram addLog={addLog} onNodeClick={(l) => { setActive(l); addLog(`OPENING: ${l}`); }} /></Suspense></Canvas></div>
       {active && <SectionOverlay sectionName={active} onClose={() => setActive(null)} />}
     </div>
   );
